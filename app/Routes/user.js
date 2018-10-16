@@ -8,9 +8,10 @@ const userRoutes = express.Router();
 var user = require('../models/user');
 var verifyToken = require('./verifyToken');
 
+// register user
 
 userRoutes.post('/register',(req, res) => {
-  console.log(req.body.email,req.body.password);
+  // console.log(req.body.email,req.body.password);
   const hashedPass = bcrypt.hashSync(req.body.password, 8);
   user.create({
     email: req.body.email,
@@ -24,6 +25,8 @@ userRoutes.post('/register',(req, res) => {
   });
 });
 
+// login user
+
 userRoutes.post('/login',(req, res) => {
   user.findOne({email: req.body.email}, (err, user) => {
     if (err) return res.status(500).send("there was an internal error");
@@ -34,19 +37,18 @@ userRoutes.post('/login',(req, res) => {
       expiresIn: 86400,
     });
     res.cookie('accessToken', token, {maxAge: 86400, httpOnly: true});
-    // console.log(req.cookies)
-    // console.log(res.cookies);
-    // console.log(res.cookie);
-    console.log('cookie set');
+    //console.log('cookie set');
     res.status(200).send({email: user.email});
   });
 });
+
+// logout user
 
 userRoutes.get('/logout', (req, res) => {
   res.cookie('accessToken', null, {maxAge: 0, httpOnly: true});
   res.status(200).send({auth: false, token: null});
 });
-
+// verify token 
 userRoutes.get('/protected',verifyToken, (req,res) => {
   res.status(200).send({auth: true, message: 'access protected api'});
 });

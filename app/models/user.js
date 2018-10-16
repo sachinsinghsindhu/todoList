@@ -19,6 +19,10 @@ const user = new mongoose.Schema({
     type: String,
     required: true,
   },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
   todos: [todo],
 });
 
