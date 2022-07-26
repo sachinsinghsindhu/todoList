@@ -1,6 +1,8 @@
 # todoList
 using express mongodb vue and nodemailer
 
+github actions added
+
 routes->
   -user registratin, login, logout -> app/Routes/user.js
 
@@ -11,5 +13,6 @@ routes->
 To use nodemailer with gmail as service -
 
   Allow less secure apps: ON in gmail settings
+
 
 
