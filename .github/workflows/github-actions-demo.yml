@@ -1,0 +1,15 @@
+name: Github Actions Demo
+on : [push]
+jobs:
+  Explore-Github-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job run automatically by trigger ${{github.event_name}}"
+      - run: echo "runner os ${{runner.os}}"
+      - run: echo "branch ${{github.ref}}"
+      - name: Checkout repository code
+        uses: actions/checkour@v3
+      - run: echo "cloned repository ${{github.repository}} to runner"
+      - name: List files in repository
+        run: ls ${{github.workspace}}
+      - run: echo "job status ${{job.status}}"
