@@ -3,6 +3,8 @@ using express mongodb vue and nodemailer
 
 github actions added
 
+test jenkins build by pull request github hooks
+
 routes->
   -user registratin, login, logout -> app/Routes/user.js
 
